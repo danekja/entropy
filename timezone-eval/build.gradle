@@ -1,0 +1,38 @@
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile 'mysql:mysql-connector-java:5.1.21'
+        compile 'javax:javaee-api:7.0'
+        compile 'org.springframework.data:spring-data-jpa:1.8.2.RELEASE'
+
+        testCompile 'junit:junit:4.12'
+        testCompile 'org.springframework:spring-test:4.0.9.RELEASE'
+    }
+
+    jar {
+        manifest.attributes provider: 'gradle'
+    }
+}
+
+project('test-base') {
+    dependencies {
+        compile 'junit:junit:4.12'
+        compile 'org.springframework:spring-test:4.0.9.RELEASE'
+    }
+}
+
+project(':test-hibernate') {
+
+
+    dependencies {
+        compile project(':test-base')
+        compile 'org.hibernate:hibernate-entitymanager:3.6.4.Final'
+        compile 'org.hibernate:hibernate-validator:4.0.1.GA'
+    }
+}

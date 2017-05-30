@@ -1,0 +1,5 @@
+rootProject.name = 'timezone-eval'
+include 'test-base', 'test-hibernate'
+findProject(':test-base')?.name = 'test-base'
+findProject(':test-hibernate')?.name = 'test-hibernate'
+
